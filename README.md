@@ -31,7 +31,7 @@ If you want to enable hmr you will need to install [`riot-hot-reload`](https://w
 npm i riot-hot-reload -D
 ```
 
-And afterwards you should import it the `riot-hot-reload` (only once in your bootstrap file) in your project in order to enhance the default riot api
+And afterwards you should import the `riot-hot-reload` API (only once in your bootstrap file) in your project in order to enhance the default riot api
 
 ```js
 import riot from 'riot'
