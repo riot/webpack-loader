@@ -13,7 +13,7 @@ function hotReload(tags) {
   if (module.hot) {
     module.hot.accept()
     if (module.hot.data) {
-      ${ tags.map(tag => `riot.reload('${ tag })'`).join('\n') }
+      ${ tags.map(tag => `riot.reload('${ tag }')`).join('\n') }
     }
   }`
 }
@@ -30,7 +30,7 @@ module.exports = function(source) {
   })
 
   if (this.cacheable) this.cacheable()
-  if (query.hot) hotReloadCode += hotReload(tags)
+  if (query.hot) hotReloadCode = hotReload(tags)
 
   return `
     var riot = require('riot')
