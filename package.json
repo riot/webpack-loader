@@ -4,7 +4,7 @@
   "description": "Riot official webpack loader",
   "main": "index.js",
   "scripts": {
-    "test": "node test"
+    "test": "node_modules/.bin/eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,8 @@
   "homepage": "https://github.com/riot/tag-loader#readme",
   "dependencies": {
     "loader-utils": "^0.2.16"
+  },
+  "devDependencies": {
+    "eslint": "^3.13.1"
   }
 }

@@ -1,5 +1,11 @@
 # tag-loader
 
+[![Build Status][travis-image]][travis-url]
+[![Issue Count][codeclimate-image]][codeclimate-url]
+[![NPM version][npm-version-image]][npm-url]
+[![NPM downloads][npm-downloads-image]][npm-url]
+[![MIT License][license-image]][license-url]
+
 Riot official webpack loader
 
 ## Usage
@@ -39,3 +45,14 @@ import 'riot-hot-reload'
 
 // riot will have now a new riot.reload method!!
 ```
+
+
+[travis-image]:  https://img.shields.io/travis/riot/tag-loader.svg?style=flat-square
+[travis-url]:    https://travis-ci.org/riot/tag-loader
+[license-image]: https://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
+[license-url]:   LICENSE.txt
+[npm-version-image]:   https://img.shields.io/npm/v/riot-tag-loader.svg?style=flat-square
+[npm-downloads-image]: https://img.shields.io/npm/dm/riot-tag-loader.svg?style=flat-square
+[npm-url]:             https://npmjs.org/package/riot-tag-loader
+[codeclimate-image]: https://codeclimate.com/github/riot/tag-loader/badges/issue_count.svg
+[codeclimate-url]:   https://codeclimate.com/github/riot/tag-loader
