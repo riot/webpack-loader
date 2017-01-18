@@ -13,7 +13,7 @@ function hotReload(tags) {
   if (module.hot) {
     module.hot.accept()
     if (module.hot.data) {
-      ${ tags.map(tag => `riot.reload(${ tag })`).join('\n') }
+      ${ tags.map(tag => `riot.reload('${ tag })'`).join('\n') }
     }
   }`
 }
@@ -23,7 +23,7 @@ module.exports = function(source) {
   const query = loaderUtils.parseQuery(this.query)
   const code = riot.compile(source, query)
   const tags = []
-  const hotReloadCode = ''
+  var hotReloadCode = ''
 
   code.replace(TAGS_NAMES_REGEX, function(_, match) {
     tags.push(match)
