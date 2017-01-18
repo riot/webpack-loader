@@ -1,0 +1,30 @@
+{
+  "name": "riot-tag-loader",
+  "version": "0.0.0",
+  "description": "Riot official webpack loader",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riot/tag-loader.git"
+  },
+  "keywords": [
+    "webpack",
+    "riot",
+    "loader"
+  ],
+  "peerDependencies": {
+    "riot": "^3.0.7"
+  },
+  "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/riot/tag-loader/issues"
+  },
+  "homepage": "https://github.com/riot/tag-loader#readme",
+  "dependencies": {
+    "loader-utils": "^0.2.16"
+  }
+}
