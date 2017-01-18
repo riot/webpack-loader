@@ -46,6 +46,9 @@ import 'riot-hot-reload'
 // riot will have now a new riot.reload method!!
 ```
 
+## Examples
+
+Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot
 
 [travis-image]:  https://img.shields.io/travis/riot/tag-loader.svg?style=flat-square
 [travis-url]:    https://travis-ci.org/riot/tag-loader
