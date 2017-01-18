@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 6
+
+branches:
+  only:
+    - master
+    - dev
+
+sudo: false
+
+install:
+  - npm i && npm install riot
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+    email: false
