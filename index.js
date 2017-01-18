@@ -21,7 +21,7 @@ function hotReload(tags) {
 
 module.exports = function(source) {
   const query = loaderUtils.parseQuery(this.query)
-  const code = riot.compile(source, query)
+  const code = riot.compile(source, query, this.resourcePath)
   const tags = []
   var hotReloadCode = ''
 
