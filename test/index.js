@@ -40,14 +40,4 @@ describe('riot-tag-loader unit test', () => {
       done()
     })
   })
-
-  it('riot loader hot and sourcemaps reload options', (done) => {
-    compile({
-      hot: true,
-      debug: true
-    }).then(content => {
-      assert.equal(content, readFile('bundle-sourcemaps.js'))
-      done()
-    })
-  })
 })
