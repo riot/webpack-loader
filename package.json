@@ -4,6 +4,7 @@
   "description": "Riot official webpack loader",
   "main": "index.js",
   "scripts": {
+    "prepublish": "npm test",
     "lint": "node_modules/.bin/eslint index.js test/*.js",
     "test": "npm run lint && node_modules/.bin/mocha test/index.js && npm run clean",
     "clean": "rm test/bundle.js"
