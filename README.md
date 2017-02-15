@@ -8,6 +8,12 @@
 
 Riot official webpack loader
 
+## Installation
+
+```shell
+npm i riot-tag-loader -D
+```
+
 ## Usage
 
 Add the riot-tag-loader in your `webpack.config.js` file
