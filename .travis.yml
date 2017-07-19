@@ -10,7 +10,7 @@ branches:
 sudo: false
 
 install:
-  - npm i && npm install riot
+  - npm install riot && npm i
 
 cache:
   directories:
