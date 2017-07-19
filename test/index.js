@@ -1,43 +1,46 @@
 const assert = require('assert'),
-  webpack = require('webpack'),
   fs = require('fs'),
   path = require('path'),
-  webpackConfig = require('./webpack.config'),
-  { EXPECT, DUMMY_BUNDLE_NAME } = require('./config')
+  loader = require('../index'),
+  tagSource = fs.readFileSync(path.resolve(__dirname, './component.tag'), 'utf8')
 
-function normalize(str) {
-  return str.trim().replace(/[\n\r]+/g, '')
+const normalize = function(str) {
+  return str.trim().replace(/[\n\r\s]+/g, '')
 }
 
-function readFile(file) {
-  return normalize(fs.readFileSync(path.join(EXPECT, file), 'utf8'))
-}
+const normalTag = `
+var riot = require('riot')
+riot.tag2('component', '<p>{message}</p>', '', '', function(opts) {
+  this.message = 'hi'
+});`
 
-function compile(opts = {}) {
-  webpackConfig.module.loaders[0].query = opts
-  const compiler = webpack(webpackConfig)
-  return new Promise(resolve => {
-    compiler.run(function(err, stats) {
-      assert.ifError(err)
-      resolve(normalize(stats.compilation.assets[DUMMY_BUNDLE_NAME].source()))
-    })
-  })
-}
+const hotReloadTag = `
+var riot = require('riot')
+riot.tag2('component', '<p>{message}</p>', '', '', function(opts) {
+  this.message = 'hi'
+});
+if (module.hot) {
+  module.hot.accept()
+  if (module.hot.data) {
+    riot.reload('component')
+  }
+}`
+
 
 describe('riot-tag-loader unit test', () => {
-  it('riot loader default options', (done) => {
-    compile().then(content => {
-      assert.equal(content, readFile('bundle-normal.js'))
-      done()
-    })
+  it('riot loader default options', () => {
+    const loaderContext = {}
+    const compiledTag = loader.call(loaderContext, tagSource)
+    assert.equal(normalize(compiledTag), normalize(normalTag))
   })
 
-  it('riot loader hot reload options', (done) => {
-    compile({
-      hot: true
-    }).then(content => {
-      assert.equal(content, readFile('bundle-hot.js'))
-      done()
-    })
+  it('riot loader hot reload options', () => {
+    const loaderContext = {
+      query: {
+        hot: true
+      }
+    }
+    const compiledTag = loader.call(loaderContext, tagSource)
+    assert.equal(normalize(compiledTag), normalize(hotReloadTag))
   })
 })
