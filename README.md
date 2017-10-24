@@ -27,6 +27,7 @@ module.exports = {
         loader: 'riot-tag-loader',
         query: {
           hot: false, // set it to true if you are using hmr
+          csp: false, // set it to true if you want to use the CSP build of riot
           // add here all the other riot-compiler options riotjs.com/guide/compiler/
           // template: 'pug' for example
         }

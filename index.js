@@ -33,7 +33,7 @@ module.exports = function(source) {
   if (query.hot) hotReloadCode = hotReload(tags)
 
   return `
-    var riot = require('riot')
+    var riot = require(${ query.csp ? "'riot/riot.csp'" : "'riot'"})
     ${ code }
     ${ hotReloadCode }
   `
