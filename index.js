@@ -1,6 +1,5 @@
 const riot = require('riot')
 const loaderUtils = require('loader-utils')
-
 const TAGS_NAMES_REGEX = /riot.tag2\(['|"](.+?)['|"],/g
 
 /**
@@ -20,10 +19,15 @@ function hotReload(tags) {
 
 
 module.exports = function(source) {
-  const query = loaderUtils.parseQuery(this.query)
-  const code = riot.compile(source, query, this.resourcePath)
+  const query = typeof this.query === 'string' ? loaderUtils.parseQuery(this.query) : this.query
+  const {code, map} = riot.compile(
+    source,
+    Object.assign(query, { sourcemap: true }),
+    this.resourcePath
+  )
+
   const tags = []
-  var hotReloadCode = ''
+  let hotReloadCode = ''
 
   code.replace(TAGS_NAMES_REGEX, function(_, match) {
     tags.push(match)
@@ -32,9 +36,9 @@ module.exports = function(source) {
   if (this.cacheable) this.cacheable()
   if (query.hot) hotReloadCode = hotReload(tags)
 
-  return `
+  this.callback(null, `
     var riot = require('riot')
     ${ code }
     ${ hotReloadCode }
-  `
+  `, map.toJSON())
 }
