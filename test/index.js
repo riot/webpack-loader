@@ -29,7 +29,7 @@ describe('riot-tag-loader unit test', () => {
     compile().then(content => {
       assert.equal(content, readFile('bundle-normal.js'))
       done()
-    })
+    }).catch(error => console.error(error))
   })
 
   it('riot loader hot reload options', (done) => {
@@ -38,6 +38,6 @@ describe('riot-tag-loader unit test', () => {
     }).then(content => {
       assert.equal(content, readFile('bundle-hot.js'))
       done()
-    })
+    }).catch(error => console.error(error))
   })
 })
