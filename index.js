@@ -19,10 +19,10 @@ function hotReload(tags) {
 
 
 module.exports = function(source) {
-  const query = typeof this.query === 'string' ? loaderUtils.parseQuery(this.query) : this.query
+  const options = loaderUtils.getOptions(this) || {}
   const {code, map} = riot.compile(
     source,
-    Object.assign(query, { sourcemap: true }),
+    Object.assign(options, { sourcemap: true }),
     this.resourcePath
   )
 
@@ -34,7 +34,7 @@ module.exports = function(source) {
   })
 
   if (this.cacheable) this.cacheable()
-  if (query.hot) hotReloadCode = hotReload(tags)
+  if (options.hot) hotReloadCode = hotReload(tags)
 
   this.callback(null, `
     var riot = require('riot')
