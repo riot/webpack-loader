@@ -1,5 +1,5 @@
 const riot = require('riot')
-const loaderUtils = require('loader-utils')
+const { getOptions } = require('loader-utils')
 const TAGS_NAMES_REGEX = /riot.tag2\(['|"](.+?)['|"],/g
 
 /**
@@ -34,10 +34,7 @@ module.exports = function(source) {
   const tags = []
 
   // parse the user query
-  const query = (typeof this.query === 'string' ?
-    loaderUtils.parseQuery(this.query) :
-    this.query
-  )
+  const query = getOptions(this)
 
   // normalise the query object in case of question marks
   const opts = Object.keys(query).reduce(function(acc, key) {
