@@ -11,7 +11,7 @@ Riot official webpack loader
 ## Installation
 
 ```shell
-npm i riot-tag-loader -D
+npm i riot-tag-loader riot-compiler -D
 ```
 
 ## Usage
