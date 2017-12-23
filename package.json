@@ -7,7 +7,7 @@
     "prepublish": "npm test",
     "lint": "node_modules/.bin/eslint index.js test/*.js",
     "test": "npm run lint && node_modules/.bin/mocha test/index.js && npm run clean",
-    "clean": "rm test/bundle.js"
+    "clean": "rm test/bundle.js test/bundle.js.map"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
     "loader"
   ],
   "peerDependencies": {
-    "riot": "^3.0.7"
+    "riot": "^3.7.4"
   },
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT",

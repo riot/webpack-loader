@@ -40,4 +40,18 @@ describe('riot-tag-loader unit test', () => {
       done()
     })
   })
+
+  it('riot loader hot reload options as string', (done) => {
+    compile('hot=true').then(content => {
+      assert.equal(content, readFile('bundle-hot.js'))
+      done()
+    })
+  })
+
+  it('riot loader hot reload options as string with question mark', (done) => {
+    compile('?hot=true').then(content => {
+      assert.equal(content, readFile('bundle-hot.js'))
+      done()
+    })
+  })
 })

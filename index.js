@@ -17,28 +17,58 @@ function hotReload(tags) {
   }`
 }
 
+/**
+ * Compile using the riot compiler returning always an object with {map, code}
+ * @param   { String } source - component source content
+ * @param   { Object } opts   - compiler options
+ * @param   { String } resourcePath - path to the component file
+ * @returns { Object } result containing always the map and code keys
+ */
+function compile(source, opts, resourcePath) {
+  const exec = () => riot.compile(source, opts, resourcePath)
+  return opts.sourcemap ? exec() : { code: exec(), map: false }
+}
 
 module.exports = function(source) {
-  const query = typeof this.query === 'string' ? loaderUtils.parseQuery(this.query) : this.query
-  const {code, map} = riot.compile(
+  // tags collection
+  const tags = []
+
+  // parse the user query
+  const query = (typeof this.query === 'string' ?
+    loaderUtils.parseQuery(this.query) :
+    this.query
+  )
+
+  // normalise the query object in case of question marks
+  const opts = Object.keys(query).reduce(function(acc, key) {
+    acc[key.replace('?', '')] = query[key]
+    return acc
+  }, {})
+
+  // compile and generate sourcemaps
+  const {code, map} = compile(
     source,
-    Object.assign(query, { sourcemap: true }),
+    Object.assign(opts, { sourcemap: this.sourceMap }),
     this.resourcePath
   )
 
-  const tags = []
-  let hotReloadCode = ''
+  // generate the output code
+  const output = `
+    var riot = require('riot')
+    ${ code }
+    ${ opts.hot ? hotReload(tags) : '' }
+  `
 
+  // detect the tags names
   code.replace(TAGS_NAMES_REGEX, function(_, match) {
     tags.push(match)
   })
 
+  // cache this module
   if (this.cacheable) this.cacheable()
-  if (query.hot) hotReloadCode = hotReload(tags)
 
-  this.callback(null, `
-    var riot = require('riot')
-    ${ code }
-    ${ hotReloadCode }
-  `, map.toJSON())
+  // return code and sourcemap
+  if (map) this.callback(null, output, map.toJSON())
+
+  return output
 }
