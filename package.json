@@ -19,7 +19,7 @@
     "loader"
   ],
   "peerDependencies": {
-    "riot": "^3.7.4"
+    "riot-compiler": "^3.3.0"
   },
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT",

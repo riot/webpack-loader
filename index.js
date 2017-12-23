@@ -1,4 +1,4 @@
-const riot = require('riot')
+const compiler = require('riot-compiler')
 const { getOptions } = require('loader-utils')
 const TAGS_NAMES_REGEX = /riot.tag2\(['|"](.+?)['|"],/g
 
@@ -25,7 +25,7 @@ function hotReload(tags) {
  * @returns { Object } result containing always the map and code keys
  */
 function compile(source, opts, resourcePath) {
-  const exec = () => riot.compile(source, opts, resourcePath)
+  const exec = () => compiler.compile(source, opts, resourcePath)
   return opts.sourcemap ? exec() : { code: exec(), map: false }
 }
 
