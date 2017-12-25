@@ -15,8 +15,7 @@ module.exports = {
     loaders: [
       {
         test: /\.tag$/,
-        loader: 'riot-tag-loader',
-        query: {}
+        loader: 'riot-tag-loader'
       }
     ]
   },

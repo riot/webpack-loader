@@ -13,7 +13,7 @@ function readFile(file) {
   return normalize(fs.readFileSync(path.join(EXPECT, file), 'utf8'))
 }
 
-function compile(opts = {}) {
+function compile(opts) {
   webpackConfig.module.loaders[0].query = opts
   const compiler = webpack(webpackConfig)
   return new Promise(resolve => {
@@ -25,8 +25,15 @@ function compile(opts = {}) {
 }
 
 describe('riot-tag-loader unit test', () => {
-  it('riot loader default options', (done) => {
-    compile().then(content => {
+  it('riot loader undefined options', (done) => {
+    compile(undefined).then(content => {
+      assert.equal(content, readFile('bundle-normal.js'))
+      done()
+    })
+  })
+
+  it('riot loader empty options', (done) => {
+    compile({}).then(content => {
       assert.equal(content, readFile('bundle-normal.js'))
       done()
     })
@@ -54,4 +61,5 @@ describe('riot-tag-loader unit test', () => {
       done()
     })
   })
+
 })
