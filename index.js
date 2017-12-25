@@ -34,7 +34,7 @@ module.exports = function(source) {
   const tags = []
 
   // parse the user query
-  const query = getOptions(this)
+  const query = getOptions(this) || {}
 
   // normalise the query object in case of question marks
   const opts = Object.keys(query).reduce(function(acc, key) {
