@@ -49,17 +49,17 @@ module.exports = function(source) {
     this.resourcePath
   )
 
+  // detect the tags names
+  code.replace(TAGS_NAMES_REGEX, function(_, match) {
+    tags.push(match)
+  })
+
   // generate the output code
   const output = `
     var riot = require('riot')
     ${ code }
     ${ opts.hot ? hotReload(tags) : '' }
   `
-
-  // detect the tags names
-  code.replace(TAGS_NAMES_REGEX, function(_, match) {
-    tags.push(match)
-  })
 
   // cache this module
   if (this.cacheable) this.cacheable()

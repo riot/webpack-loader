@@ -44,6 +44,7 @@ describe('riot-tag-loader unit test', () => {
       hot: true
     }).then(content => {
       assert.equal(content, readFile('bundle-hot.js'))
+      assert.ok(/riot\.reload\('component'\)/.test(content))
       done()
     })
   })
