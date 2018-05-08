@@ -51,6 +51,28 @@ import 'riot-hot-reload'
 // riot will have now a new riot.reload method!!
 ```
 
+## Modular usage
+
+By default the loader prepends `var riot = require('riot')` to the compiled file to support CommonJS. If you need to turn this off just set the option `commonjs: false`.
+
+Alternatively you can use the option `modular: true`. This will wrap the compiled code in a function and includes AMD and CommonJS support if possible. The output will then look like this:
+
+```js
+(function(tagger) {
+  if (typeof define === 'function' && define.amd) {
+    define(['riot'], function(riot) { tagger(riot); });
+  } else if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    tagger(require('riot'));
+  } else {
+    tagger(window.riot);
+  }
+})(function(riot) {
+
+  // compiled tag code here
+
+});
+```
+
 ## Examples
 
 Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot

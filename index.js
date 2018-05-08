@@ -54,12 +54,23 @@ module.exports = function(source) {
     tags.push(match)
   })
 
+  // Prepend code 
+
   // generate the output code
-  const output = `
-    var riot = require('riot')
+  let output = `
     ${ code }
     ${ opts.hot ? hotReload(tags) : '' }
   `
+
+  // Prepend require()
+  if (opts.commonjs !== false) {
+    output = `\nvar riot = require('riot');${ output }`;
+  }
+
+  // Support modular usage
+  if (opts.modular) {
+    output = `\n(function(tagger) {\n  if (typeof define === 'function' && define.amd) {\n    define(['riot'], function(riot) { tagger(riot); });\n  } else if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {\n    tagger(require('riot'));\n  } else {\n    tagger(window.riot);\n  }\n})(function(riot) {${ output }\r});`;
+  }
 
   // cache this module
   if (this.cacheable) this.cacheable()
