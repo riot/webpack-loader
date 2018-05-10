@@ -14,7 +14,7 @@ Riot official webpack loader
 npm i riot-tag-loader riot-compiler -D
 ```
 
-## Usage
+## Usage in webpack <= 3
 
 Add the riot-tag-loader in your `webpack.config.js` file
 ```js
@@ -30,6 +30,30 @@ module.exports = {
           // add here all the other riot-compiler options riotjs.com/guide/compiler/
           // template: 'pug' for example
         }
+      }
+    ]
+  }
+}
+```
+
+## Usage in webpack >= 4
+
+Add the riot-tag-loader in your `webpack.config.js` file
+```js
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.tag$/,
+        exclude: /node_modules/,
+        use: [{
+          loader: 'riot-tag-loader',
+          options: {
+            hot: false, // set it to true if you are using hmr
+            // add here all the other riot-compiler options riotjs.com/guide/compiler/
+            // template: 'pug' for example
+          }
+        }]
       }
     ]
   }
