@@ -27,7 +27,7 @@ module.exports = {
         loader: 'riot-tag-loader',
         query: {
           hot: false, // set it to true if you are using hmr
-          // add here all the other riot-compiler options riotjs.com/guide/compiler/
+          // add here all the other riot-compiler options riot.js.org/guide/compiler/
           // template: 'pug' for example
         }
       }
@@ -50,7 +50,7 @@ module.exports = {
           loader: 'riot-tag-loader',
           options: {
             hot: false, // set it to true if you are using hmr
-            // add here all the other riot-compiler options riotjs.com/guide/compiler/
+            // add here all the other riot-compiler options riot.js.org/guide/compiler/
             // template: 'pug' for example
           }
         }]
