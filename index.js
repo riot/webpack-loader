@@ -45,7 +45,7 @@ module.exports = function(source) {
   // compile and generate sourcemaps
   const {code, map} = compile(
     source,
-    Object.assign(opts, { sourcemap: this.sourceMap }),
+    Object.assign(opts, { sourcemap: opts.sourcemap != null ? opts.sourcemap : this.sourceMap }),
     this.resourcePath
   )
 
