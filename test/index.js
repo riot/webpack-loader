@@ -72,8 +72,8 @@ describe('riot-tag-loader unit test', () => {
     compile({
       sourcemap: false
     }).then(({ content, sourceMap }) => {
-      assert.equal(content, readFile('bundle-sourcemap-disabled.js'))
-      assert.equal(sourceMap, readFile('bundle-sourcemap-disabled.js.map'))
+      assert.equal(content, readFile('bundle-normal.js'))
+      assert.equal(sourceMap, readFile('bundle-normal-sourcemap-disabled.js.map'))
       done()
     })
   })
