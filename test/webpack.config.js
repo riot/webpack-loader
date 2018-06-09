@@ -12,10 +12,12 @@ module.exports = {
     riot: 'riot'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.tag$/,
-        loader: 'riot-tag-loader'
+        use: [{
+          loader: 'riot-tag-loader'
+        }]
       }
     ]
   },

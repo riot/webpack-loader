@@ -1,20 +1,21 @@
 const assert = require('assert'),
   webpack = require('webpack'),
-  fs = require('fs'),
-  path = require('path'),
   webpackConfig = require('./webpack.config'),
-  { EXPECT, DUMMY_BUNDLE_NAME } = require('./config')
+  { DUMMY_BUNDLE_NAME } = require('./config')
 
 function normalize(str) {
   return str.trim().replace(/[\n\r]+/g, '')
 }
 
-function readFile(file) {
-  return normalize(fs.readFileSync(path.join(EXPECT, file), 'utf8'))
-}
-
 function compile(opts) {
-  webpackConfig.module.loaders[0].query = opts
+  webpackConfig.module.rules[0].use[0].options = opts
+
+  if (opts && opts.hot) {
+    webpackConfig.plugins = [
+      new webpack.HotModuleReplacementPlugin()
+    ]
+  }
+
   const compiler = webpack(webpackConfig)
   return new Promise(resolve => {
     compiler.run(function(err, stats) {
@@ -24,42 +25,42 @@ function compile(opts) {
   })
 }
 
+const TEST_TAG_RE = /\.tag2\("component"/
+const RELOAD_TAG_RE = /\.reload\("component"\)/
+
 describe('riot-tag-loader unit test', () => {
-  it('riot loader undefined options', (done) => {
-    compile(undefined).then(content => {
-      assert.equal(content, readFile('bundle-normal.js'))
-      done()
+  it('riot loader undefined options', () => {
+    return compile(undefined).then(content => {
+      assert.ok(TEST_TAG_RE.test(content))
     })
   })
 
-  it('riot loader empty options', (done) => {
-    compile({}).then(content => {
-      assert.equal(content, readFile('bundle-normal.js'))
-      done()
+  it('riot loader empty options', () => {
+    return compile({}).then(content => {
+      assert.ok(TEST_TAG_RE.test(content))
     })
   })
 
-  it('riot loader hot reload options', (done) => {
-    compile({
+  it('riot loader hot reload options', () => {
+    return compile({
       hot: true
     }).then(content => {
-      assert.equal(content, readFile('bundle-hot.js'))
-      assert.ok(/riot\.reload\('component'\)/.test(content))
-      done()
+      assert.ok(TEST_TAG_RE.test(content))
+      assert.ok(RELOAD_TAG_RE.test(content))
     })
   })
 
-  it('riot loader hot reload options as string', (done) => {
-    compile('hot=true').then(content => {
-      assert.equal(content, readFile('bundle-hot.js'))
-      done()
+  it('riot loader hot reload options as string', () => {
+    return compile('hot=true').then(content => {
+      assert.ok(TEST_TAG_RE.test(content))
+      assert.ok(RELOAD_TAG_RE.test(content))
     })
   })
 
-  it('riot loader hot reload options as string with question mark', (done) => {
-    compile('?hot=true').then(content => {
-      assert.equal(content, readFile('bundle-hot.js'))
-      done()
+  it('riot loader hot reload options as string with question mark', () => {
+    return compile('?hot=true').then(content => {
+      assert.ok(TEST_TAG_RE.test(content))
+      assert.ok(RELOAD_TAG_RE.test(content))
     })
   })
 

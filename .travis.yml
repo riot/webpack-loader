@@ -9,10 +9,6 @@ branches:
 
 sudo: false
 
-install:
-  - npm install riot-compiler
-  - npm i
-
 cache:
   directories:
     - node_modules
