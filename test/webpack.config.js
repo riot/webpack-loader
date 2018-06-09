@@ -6,7 +6,7 @@ module.exports = {
     path: __dirname,
     filename: DUMMY_BUNDLE_NAME
   },
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
   entry: path.join(FIXTURES, 'index.js'),
   externals: {
     riot: 'riot'
