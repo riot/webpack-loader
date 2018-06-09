@@ -75,6 +75,14 @@ import 'riot-hot-reload'
 // riot will have now a new riot.reload method!!
 ```
 
+### Source maps
+To save time when bundling, it is possible to disable generating source maps via the `sourcemap` loader option:
+```
+options: {
+  sourcemap: false
+}
+```
+
 ## Examples
 
 Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot

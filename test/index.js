@@ -7,6 +7,7 @@ function normalize(str) {
   return str.trim().replace(/[\n\r]+/g, '')
 }
 
+
 function compile(opts) {
   webpackConfig.module.rules[0].use[0].options = opts
 
@@ -25,8 +26,8 @@ function compile(opts) {
   })
 }
 
-const TEST_TAG_RE = /\.tag2\("component"/
-const RELOAD_TAG_RE = /\.reload\("component"\)/
+const TEST_TAG_RE = /\.tag2\('component'/
+const RELOAD_TAG_RE = /\.reload\('component'\)/
 
 describe('riot-tag-loader unit test', () => {
   it('riot loader undefined options', () => {
@@ -61,6 +62,38 @@ describe('riot-tag-loader unit test', () => {
     return compile('?hot=true').then(content => {
       assert.ok(TEST_TAG_RE.test(content))
       assert.ok(RELOAD_TAG_RE.test(content))
+    })
+  })
+
+  it('riot loader with disabled sourcemap options maps to compiled tag file', function* () {
+    const defaultOutputLength = (yield compile()).length
+
+    return compile({
+      sourcemap: false
+    }).then(content => {
+      assert.ok(TEST_TAG_RE.test(content))
+      assert.equal(defaultOutputLength, content.length)
+    })
+  })
+
+  it('riot loader with enabled sourcemap options maps to original tag file', function* () {
+    const defaultOutputLength = (yield compile()).length
+
+    return compile({
+      sourcemap: true
+    }).then(content => {
+      assert.ok(TEST_TAG_RE.test(content))
+      assert.equal(defaultOutputLength, content.length)
+    })
+  })
+
+  it('riot loader with undefined sourcemap options maps to original tag file', function* () {
+    const defaultOutputLength = (yield compile()).length
+
+    return compile({}).then(content => {
+      assert.ok(TEST_TAG_RE.test(content))
+      // the output here will be smaller because we skip the riot sourcemaps
+      assert.ok(content.length < defaultOutputLength)
     })
   })
 
