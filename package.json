@@ -1,6 +1,6 @@
 {
   "name": "@riotjs/webpack-loader",
-  "version": "4.0.0-alpha.3",
+  "version": "4.0.0-alpha.4",
   "description": "Riot official webpack loader",
   "jsnext:main": "dist/riot-webpack-loader.es6.js",
   "main": "dist/riot-webpack-loader.cjs.js",
