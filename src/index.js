@@ -9,7 +9,7 @@ const {getOptions} = require('loader-utils')
 function hotReload(tagName) {
   return `
   if (module.hot) {
-    const hotReload = require('@riotjs/hot-reload')
+    const hotReload = require('@riotjs/hot-reload').default
     module.hot.accept()
     if (module.hot.data) {
       hotReload('${tagName}')
