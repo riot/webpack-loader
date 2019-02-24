@@ -1,0 +1,14 @@
+<component>
+  <p onclick={action}>{ state.message }</p>
+
+  <script>
+    export default {
+      state: {
+        message: 'hi'
+      },
+      action() {
+        throw new Error('foo')
+      }
+    }
+  </script>
+</component>

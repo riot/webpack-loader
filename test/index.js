@@ -1,7 +1,7 @@
-const assert = require('assert'),
-  webpack = require('webpack'),
-  webpackConfig = require('./webpack.config'),
-  { DUMMY_BUNDLE_NAME } = require('./config')
+import  { DUMMY_BUNDLE_NAME } from './config'
+import {expect} from 'chai'
+import webpack from 'webpack'
+import webpackConfig from './webpack.config'
 
 function normalize(str) {
   return str.trim().replace(/[\n\r]+/g, '')
@@ -20,74 +20,57 @@ function compile(opts) {
   const compiler = webpack(webpackConfig)
   return new Promise(resolve => {
     compiler.run(function(err, stats) {
-      assert.ifError(err)
+      if (err) throw new Error(err)
       resolve(normalize(stats.compilation.assets[DUMMY_BUNDLE_NAME].source()))
     })
   })
 }
 
-const TEST_TAG_RE = /\.tag2\(['|"]component['|"]/
-const RELOAD_TAG_RE = /\.reload\(['|"]component['|"]\)/
+const OPENING_TEMPLATE_CALL = /template\(/
+const RIOT_HOT_RELOAD_DEPENDENCY = /hotReload/
 
 describe('riot-tag-loader unit test', () => {
   it('riot loader undefined options', async() => {
     const content = await compile(undefined)
-    assert.ok(TEST_TAG_RE.test(content))
+    expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
   })
 
   it('riot loader empty options', async() => {
     const content = await compile({})
-    assert.ok(TEST_TAG_RE.test(content))
+    expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
   })
 
   it('riot loader hot reload options', async() => {
     const content = await compile({
-      hot: true
+      hot: true,
+      devtool: false
     })
 
-    assert.ok(TEST_TAG_RE.test(content))
-    assert.ok(RELOAD_TAG_RE.test(content))
+    expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
+    expect(RIOT_HOT_RELOAD_DEPENDENCY.test(content)).to.be.ok
   })
 
   it('riot loader hot reload options as string', async() => {
     const content = await compile('hot=true')
-    assert.ok(TEST_TAG_RE.test(content))
-    assert.ok(RELOAD_TAG_RE.test(content))
+    expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
+    expect(RIOT_HOT_RELOAD_DEPENDENCY.test(content)).to.be.ok
   })
 
   it('riot loader hot reload options as string with question mark', async() => {
     const content = await compile('?hot=true')
 
-    assert.ok(TEST_TAG_RE.test(content))
-    assert.ok(RELOAD_TAG_RE.test(content))
+    expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
+    expect(RIOT_HOT_RELOAD_DEPENDENCY.test(content)).to.be.ok
   })
 
-  it('riot loader with disabled sourcemap options maps to compiled tag file', async() => {
+  it('riot loader with disabled sourcempas will not produce any inline sourcemap', async() => {
     const defaultOutput = (await compile())
     const content = await compile({
       sourcemap: false
     })
 
-    assert.ok(TEST_TAG_RE.test(content))
+    expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
     // the output here will be different
-    assert.notEqual(content, defaultOutput)
-  })
-
-  it('riot loader with enabled sourcemap options maps to original tag file', async() => {
-    const defaultOutput = (await compile())
-    const content = await compile({
-      sourcemap: true
-    })
-
-    assert.ok(TEST_TAG_RE.test(content))
-    assert.equal(defaultOutput, content)
-  })
-
-  it('riot loader with undefined sourcemap options maps to original tag file', async() => {
-    const defaultOutput = (await compile())
-    const content = await compile({})
-
-    assert.ok(TEST_TAG_RE.test(content))
-    assert.equal(content, defaultOutput)
+    expect(content).to.be.not.equal(defaultOutput)
   })
 })

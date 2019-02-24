@@ -8,22 +8,19 @@ module.exports = {
   },
   devtool: 'eval-source-map',
   entry: path.join(FIXTURES, 'index.js'),
-  externals: {
-    riot: 'riot'
-  },
   module: {
     rules: [
       {
-        test: /\.tag$/,
+        test: /\.riot$/,
         use: [{
-          loader: 'riot-tag-loader'
+          loader: '@riotjs/webpack'
         }]
       }
     ]
   },
   resolveLoader: {
     alias: {
-      'riot-tag-loader': path.resolve(__dirname, '../index.js')
+      '@riotjs/webpack': path.resolve(__dirname, '../dist/riot-webpack-loader.cjs.js')
     }
   }
 }

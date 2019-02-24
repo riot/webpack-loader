@@ -1,17 +1,26 @@
 {
-  "name": "riot-tag-loader",
-  "version": "2.1.0",
+  "name": "@riotjs/webpack-loader",
+  "version": "4.0.0-alpha.1",
   "description": "Riot official webpack loader",
-  "main": "index.js",
+  "jsnext:main": "dist/riot-webpack-loader.es6.js",
+  "main": "dist/riot-webpack-loader.cjs.js",
+  "module": "dist/riot-webpack-loader.esm.js",
+  "source": "./src/index.js",
   "scripts": {
-    "prepublish": "npm test",
-    "lint": "node_modules/.bin/eslint index.js test/*.js",
-    "test": "npm run lint && node_modules/.bin/mocha test/index.js && npm run clean",
+    "prepublishOnly": "npm test",
+    "prepare": "npm i @riotjs/compiler @riotjs/hot-reload --no-save",
+    "lint": "eslint src test",
+    "build": "rollup -c",
+    "pretest": "npm run build",
+    "test": "npm run lint && mocha -r esm test/index.js && npm run clean",
     "clean": "rm test/bundle.js"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/riot/tag-loader.git"
+    "url": "git+https://github.com/riot/webpack-loader.git"
   },
   "keywords": [
     "webpack",
@@ -19,22 +28,24 @@
     "loader"
   ],
   "peerDependencies": {
-    "riot-compiler": "^3.3.0"
+    "@riotjs/compiler": "^4.0.0-alpha.18"
   },
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/riot/tag-loader/issues"
+    "url": "https://github.com/riot/webpack-loader/issues"
   },
-  "homepage": "https://github.com/riot/tag-loader#readme",
+  "homepage": "https://github.com/riot/webpack-loader#readme",
   "dependencies": {
-    "loader-utils": "^1.1.0"
+    "loader-utils": "^1.2.3"
   },
   "devDependencies": {
-    "eslint": "^4.19.1",
+    "chai": "^4.2.0",
+    "eslint": "^5.8.0",
     "eslint-config-riot": "^2.0.0",
+    "esm": "^3.2.6",
     "mocha": "^5.2.0",
-    "riot-compiler": "^3.5.1",
-    "webpack": "^4.10.2"
+    "rollup": "^1.1.2",
+    "webpack": "^4.29.5"
   }
 }

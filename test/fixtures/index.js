@@ -1,1 +1,3 @@
-import './component.tag'
+import Component from './component.riot'
+
+export default Component
