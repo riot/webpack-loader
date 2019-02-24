@@ -37,10 +37,7 @@ module.exports = function(source) {
   )
 
   // generate the output code
-  const output = `
-    ${code}
-    ${opts.hot ? hotReload(meta.tagName) : ''}
-  `
+  const output = `${code}${opts.hot ? hotReload(meta.tagName) : ''}`
 
   // cache this module
   if (this.cacheable) this.cacheable()
