@@ -83,6 +83,19 @@ options: {
 }
 ```
 
+### Include
+
+If you need to import a Less/Sass/SCSS/Stylus file that is not located in the tag's folder you can use the `include` option.
+It lets you add additional paths where the compiler will look for the imported file.
+
+```
+options: {
+  include: [
+    path.resolve(__dirname, 'node_modules')
+  ]
+}
+```
+
 ## Examples
 
 Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot

@@ -1,3 +1,4 @@
+const path = require('path')
 const compiler = require('riot-compiler')
 const { getOptions } = require('loader-utils')
 const TAGS_NAMES_REGEX = /riot.tag2\(['|"](.+?)['|"],/g
@@ -29,6 +30,35 @@ function compile(source, opts, resourcePath) {
   return opts.sourcemap ? exec() : { code: exec(), map: false }
 }
 
+/**
+ * Transforms the include options into a parser specific option
+ * @param   { Object } opts - compiler options (incl. include option)
+ * @param   { String } resourcePath - path to the component file
+ * @returns { Object } result with transformed include for the parser
+ */
+function transformInclude(opts, resourcePath) {
+  if (opts.include instanceof Array) {
+    opts.include.push(path.parse(resourcePath).dir)
+    opts.parserOptions = opts.parserOptions || {}
+    opts.parserOptions.style = opts.parserOptions.style || {}
+    switch (opts.style) {
+      case 'less':
+        opts.parserOptions.style.paths = opts.include
+        break
+      case 'sass':
+        opts.parserOptions.style.includePaths = opts.include
+        break
+      case 'scss':
+        opts.parserOptions.style.includePaths = opts.include
+        break
+      case 'stylus':
+        opts.parserOptions.style.include = opts.include
+        break
+    }
+    return opts
+  }
+}
+
 module.exports = function(source) {
   // tags collection
   const tags = []
@@ -47,7 +77,7 @@ module.exports = function(source) {
     source,
     Object.assign(opts, {
       sourcemap: opts.sourcemap !== false && this.sourceMap
-    }),
+    }, transformInclude(opts, this.resourcePath)),
     this.resourcePath
   )
 
