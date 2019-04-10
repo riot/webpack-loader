@@ -33,7 +33,7 @@ function compile(source, opts, resourcePath) {
 /**
  * Transforms the include options into a parser specific option
  * @param   { Object } opts - compiler options (incl. include option)
- * @param   { String } resourcePath - path to the component file
+ * @param   { string } resourcePath - path to the component file
  * @returns { Object } result with transformed include for the parser
  */
 function transformInclude(opts, resourcePath) {
@@ -42,18 +42,18 @@ function transformInclude(opts, resourcePath) {
     opts.parserOptions = opts.parserOptions || {}
     opts.parserOptions.style = opts.parserOptions.style || {}
     switch (opts.style) {
-      case 'less':
-        opts.parserOptions.style.paths = opts.include
-        break
-      case 'sass':
-        opts.parserOptions.style.includePaths = opts.include
-        break
-      case 'scss':
-        opts.parserOptions.style.includePaths = opts.include
-        break
-      case 'stylus':
-        opts.parserOptions.style.include = opts.include
-        break
+    case 'less':
+      opts.parserOptions.style.paths = opts.include
+      break
+    case 'sass':
+      opts.parserOptions.style.includePaths = opts.include
+      break
+    case 'scss':
+      opts.parserOptions.style.includePaths = opts.include
+      break
+    case 'stylus':
+      opts.parserOptions.style.include = opts.include
+      break
     }
     return opts
   }
