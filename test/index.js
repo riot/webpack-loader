@@ -1,4 +1,5 @@
 const assert = require('assert'),
+  path = require('path'),
   webpack = require('webpack'),
   webpackConfig = require('./webpack.config'),
   { DUMMY_BUNDLE_NAME } = require('./config')
@@ -27,6 +28,7 @@ function compile(opts) {
 }
 
 const TEST_TAG_RE = /\.tag2\(['|"]component['|"]/
+const TEST_STYLE_RE = /\[data-is=\\"\w+\\"\]/
 const RELOAD_TAG_RE = /\.reload\(['|"]component['|"]\)/
 
 describe('riot-tag-loader unit test', () => {
@@ -89,5 +91,14 @@ describe('riot-tag-loader unit test', () => {
 
     assert.ok(TEST_TAG_RE.test(content))
     assert.equal(content, defaultOutput)
+  })
+
+  it('riot loader with include option and scss in tag file', async() => {
+    const content = await compile({
+      style: 'scss',
+      include: [path.resolve(__dirname, 'fixtures/styles')]
+    })
+
+    assert.equal(TEST_STYLE_RE.test(content), true)
   })
 })
