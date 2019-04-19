@@ -1,4 +1,4 @@
-# tag-loader
+# Riot.js webpack-loader
 
 [![Build Status][travis-image]][travis-url]
 [![Issue Count][codeclimate-image]][codeclimate-url]
@@ -54,12 +54,13 @@ And afterwards webpack will be able to automatically reload your Riot.js compone
 
 Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot
 
-[travis-image]:  https://img.shields.io/travis/riot/tag-loader.svg?style=flat-square
-[travis-url]:    https://travis-ci.org/riot/tag-loader
+[travis-image]:  https://img.shields.io/travis/riot/webpack-loader.svg?style=flat-square
+[travis-url]:    https://travis-ci.org/riot/webpack-loader
 [license-image]: https://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
-[license-url]:   LICENSE.txt
-[npm-version-image]:   https://img.shields.io/npm/v/riot-tag-loader.svg?style=flat-square
-[npm-downloads-image]: https://img.shields.io/npm/dm/riot-tag-loader.svg?style=flat-square
-[npm-url]:             https://npmjs.org/package/riot-tag-loader
-[codeclimate-image]: https://codeclimate.com/github/riot/tag-loader/badges/issue_count.svg
-[codeclimate-url]:   https://codeclimate.com/github/riot/tag-loader
+[license-url]:   LICENSE
+[npm-version-image]:   https://img.shields.io/npm/v/@riotjs/webpack-loader.svg?style=flat-square
+[npm-downloads-image]: https://img.shields.io/npm/dm/@riotjs/webpack-loader.svg?style=flat-square
+[npm-url]:             https://npmjs.org/package/@riotjs/webpack-loader
+[codeclimate-image]: https://api.codeclimate.com/v1/badges/8c3dc0302a42730e8fba/maintainability
+[codeclimate-url]:   https://codeclimate.com/github/riot/webpack-loader/maintainability
+
