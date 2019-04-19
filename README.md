@@ -6,51 +6,33 @@
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
 
-Riot official webpack loader
+Riot.js official webpack loader
+
+## Important
+
+If you are using Riot.js < 4.0.0 please check the [v3 branch](https://github.com/riot/webpack-loader/tree/v3)
 
 ## Installation
 
 ```shell
-npm i riot-tag-loader riot-compiler -D
+npm i @riotjs/webpack-loader @riotjs/compiler -D
 ```
 
-## Usage in webpack <= 3
+## Usage
 
-Add the riot-tag-loader in your `webpack.config.js` file
-```js
-module.exports = {
-  module: {
-    loaders: [
-      {
-        test: /\.tag$/,
-        exclude: /node_modules/,
-        loader: 'riot-tag-loader',
-        query: {
-          hot: false, // set it to true if you are using hmr
-          // add here all the other riot-compiler options riot.js.org/guide/compiler/
-          // template: 'pug' for example
-        }
-      }
-    ]
-  }
-}
-```
-
-## Usage in webpack >= 4
-
-Add the riot-tag-loader in your `webpack.config.js` file
+Add the `@riotjs/webpack-loader` in your `webpack.config.js` file
 ```js
 module.exports = {
   module: {
     rules: [
       {
-        test: /\.tag$/,
+        test: /\.riot$/,
         exclude: /node_modules/,
         use: [{
-          loader: 'riot-tag-loader',
+          loader: '@riotjs/webpack-loader',
           options: {
             hot: false, // set it to true if you are using hmr
-            // add here all the other riot-compiler options riot.js.org/guide/compiler/
+            // add here all the other @riotjs/compiler options riot.js.org/guide/compiler/
             // template: 'pug' for example
           }
         }]
@@ -60,28 +42,13 @@ module.exports = {
 }
 ```
 
-If you want to enable hmr you will need to install [`riot-hot-reload`](https://www.npmjs.com/package/riot-hot-reload)
+If you want to enable hmr via `hot` option you will need to install also [`@riotjs/hot-reload`](https://www.npmjs.com/package/@riotjs/hot-reload)
 
 ```shell
-npm i riot-hot-reload -D
+npm i @riotjs/hot-reload -D
 ```
 
-And afterwards you should import the `riot-hot-reload` API (only once in your bootstrap file) in your project in order to enhance the default riot api
-
-```js
-import riot from 'riot'
-import 'riot-hot-reload'
-
-// riot will have now a new riot.reload method!!
-```
-
-### Source maps
-To save time when bundling, it is possible to disable generating source maps via the `sourcemap` loader option:
-```
-options: {
-  sourcemap: false
-}
-```
+And afterwards webpack will be able to automatically reload your Riot.js components in runtime.
 
 ## Examples
 

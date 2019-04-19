@@ -1,9 +1,9 @@
 {
   "name": "@riotjs/webpack-loader",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0",
   "description": "Riot official webpack loader",
-  "jsnext:main": "dist/riot-webpack-loader.es6.js",
   "main": "dist/riot-webpack-loader.cjs.js",
+  "jsnext:main": "dist/riot-webpack-loader.esm.js",
   "module": "dist/riot-webpack-loader.esm.js",
   "source": "./src/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "loader"
   ],
   "peerDependencies": {
-    "@riotjs/compiler": "^4.0.0-beta.1"
+    "@riotjs/compiler": "^4.0.0"
   },
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT",
@@ -41,11 +41,11 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.15.0",
+    "eslint": "^5.16.0",
     "eslint-config-riot": "^2.0.0",
-    "esm": "^3.2.6",
-    "mocha": "^6.0.2",
-    "rollup": "^1.4.0",
-    "webpack": "^4.29.5"
+    "esm": "^3.2.22",
+    "mocha": "^6.1.4",
+    "rollup": "^1.10.1",
+    "webpack": "^4.30.0"
   }
 }
