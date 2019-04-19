@@ -29,7 +29,7 @@ function compile(opts) {
 const OPENING_TEMPLATE_CALL = /template\(/
 const RIOT_HOT_RELOAD_DEPENDENCY = /hotReload/
 
-describe('riot-tag-loader unit test', () => {
+describe('Riot.js webpack loader unit test', () => {
   it('riot loader undefined options', async() => {
     const content = await compile(undefined)
     expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
