@@ -33,6 +33,7 @@ describe('riot-tag-loader unit test', () => {
   it('riot loader undefined options', async() => {
     const content = await compile(undefined)
     expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
+    return Promise.resolve()
   })
 
   it('riot loader empty options', async() => {
