@@ -12,7 +12,7 @@
     "lint": "eslint src test",
     "build": "rollup -c",
     "pretest": "npm run build",
-    "test": "npm run lint && mocha -r esm test/index.js && npm run clean",
+    "test": "npm run lint && mocha -r esm --timeout 5000 test/index.js && npm run clean",
     "clean": "rm test/bundle.js"
   },
   "files": [
