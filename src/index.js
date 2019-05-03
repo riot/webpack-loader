@@ -7,6 +7,9 @@ import {getOptions} from 'loader-utils'
  * @returns {string} the code needed to handle the riot hot reload
  */
 function hotReload(path) {
+  if ( process.platform === "win32" ) {
+    path = path.replace(/\\/g, '\\\\');
+  }
   return `;(() => {
   if (module.hot) {
     const hotReload = require('@riotjs/hot-reload').default
