@@ -28,7 +28,7 @@
     "loader"
   ],
   "peerDependencies": {
-    "@riotjs/compiler": "^4.0.0"
+    "@riotjs/compiler": "^4.2.3"
   },
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT",
@@ -43,9 +43,9 @@
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-riot": "^2.0.0",
-    "esm": "^3.2.22",
+    "esm": "^3.2.25",
     "mocha": "^6.1.4",
-    "rollup": "^1.10.1",
-    "webpack": "^4.30.0"
+    "rollup": "^1.12.5",
+    "webpack": "^4.32.2"
   }
 }
