@@ -19,7 +19,7 @@ function hotReload(path) {
 })()`
 }
 
-export default function(source) {
+export default function(source, map, meta) {
   // parse the user query
   const query = getOptions(this) || {}
 
@@ -29,23 +29,26 @@ export default function(source) {
     return acc
   }, {})
 
-  // compile and generate sourcemaps
-  const {code, map} = compile(
-    source,
-    {
-      ...opts,
-      file: this.resourcePath
-    }
-  )
+  try {
+    // compile and generate sourcemaps
+    const {code, map} = compile(
+      source,
+      {
+        ...opts,
+        file: this.resourcePath
+      }
+    )
+    // generate the output code
+    // convert webpack's absolute path to a script-friendly string for hotReload
+    const escapedPath = stringifyRequest(this, this.resourcePath)
+    const output = `${code}${opts.hot ? hotReload(escapedPath) : ''}`
 
-  // generate the output code
-  // convert webpack's absolute path to a script-friendly string for hotReload
-  const escapedPath = stringifyRequest(this, this.resourcePath)
-  const output = `${code}${opts.hot ? hotReload(escapedPath) : ''}`
+    // cache this module
+    if (this.cacheable) this.cacheable()
 
-  // cache this module
-  if (this.cacheable) this.cacheable()
-
-  // return code and sourcemap
-  this.callback(null, output, map)
+    // return code and sourcemap
+    this.callback(null, output, map, meta)
+  } catch(error) {
+    this.callback(error, '', map, meta)
+  }
 }
