@@ -13,14 +13,9 @@ module.exports = {
       {
         test: /\.riot$/,
         use: [{
-          loader: '@riotjs/webpack'
+          loader: path.resolve(__dirname, '../dist/riot-webpack-loader.cjs.js')
         }]
       }
     ]
-  },
-  resolveLoader: {
-    alias: {
-      '@riotjs/webpack': path.resolve(__dirname, '../dist/riot-webpack-loader.cjs.js')
-    }
   }
 }

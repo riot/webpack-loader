@@ -1,5 +1,7 @@
+import { existsSync, readFileSync, unlinkSync } from 'fs'
 import  { DUMMY_BUNDLE_NAME } from './config'
 import {expect} from 'chai'
+import { join } from 'path'
 import webpack from 'webpack'
 import webpackConfig from './webpack.config'
 
@@ -21,7 +23,15 @@ function compile(opts) {
   return new Promise(resolve => {
     compiler.run(function(err, stats) {
       if (err) throw new Error(err)
-      resolve(normalize(stats.compilation.assets[DUMMY_BUNDLE_NAME].source()))
+      const { assets, outputPath } = stats.toJson()
+      // these checks are only needed to the new Webpack 5
+      // it has added some big breaking changes to its internal API
+      const outputFile = join(outputPath, assets[0].name)
+      const source = existsSync(outputFile) ?
+        readFileSync(join(outputPath, assets[0].name), 'utf8') :
+        stats.compilation.assets[DUMMY_BUNDLE_NAME].source()
+
+      resolve(normalize(source))
     })
   })
 }
@@ -30,6 +40,11 @@ const OPENING_TEMPLATE_CALL = /template\(/
 const RIOT_HOT_RELOAD_DEPENDENCY = /hotReload/
 
 describe('Riot.js webpack loader unit test', () => {
+  afterEach(() => {
+    const bundlePath = join(__dirname, DUMMY_BUNDLE_NAME)
+    if (existsSync(bundlePath)) unlinkSync(bundlePath)
+  })
+
   it('riot loader undefined options', async() => {
     const content = await compile(undefined)
     expect(OPENING_TEMPLATE_CALL.test(content)).to.be.ok
