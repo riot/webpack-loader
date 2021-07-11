@@ -1,6 +1,6 @@
 # Riot.js webpack-loader
 
-[![Build Status][travis-image]][travis-url]
+[![Build Status][ci-image]][ci-url]
 [![Issue Count][codeclimate-image]][codeclimate-url]
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-url]
@@ -54,8 +54,8 @@ And afterwards webpack will be able to automatically reload your Riot.js compone
 
 Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot
 
-[travis-image]:  https://img.shields.io/travis/riot/webpack-loader.svg?style=flat-square
-[travis-url]:    https://travis-ci.org/riot/webpack-loader
+[ci-image]:https://img.shields.io/github/workflow/status/riot/webpack-loader/test?style=flat-square
+[ci-url]:https://github.com/riot/webpack-loader/actions
 [license-image]: https://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
 [license-url]:   LICENSE
 [npm-version-image]:   https://img.shields.io/npm/v/@riotjs/webpack-loader.svg?style=flat-square

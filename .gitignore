@@ -38,3 +38,4 @@ jspm_packages
 
 # Ignore generated files
 dist
+.idea
