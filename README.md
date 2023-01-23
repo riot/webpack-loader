@@ -54,7 +54,7 @@ And afterwards webpack will be able to automatically reload your Riot.js compone
 
 Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot
 
-[ci-image]:https://img.shields.io/github/workflow/status/riot/webpack-loader/test?style=flat-square
+[ci-image]:https://img.shields.io/github/actions/workflow/status/riot/webpack-loader/test.yml?style=flat-square
 [ci-url]:https://github.com/riot/webpack-loader/actions
 [license-image]: https://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
 [license-url]:   LICENSE
