@@ -1,18 +1,13 @@
-const pkg = require('./package.json')
-const external = Object.keys(pkg.dependencies)
-
 export default {
-  input: pkg.source,
+  input: './src/index.js',
   plugins: [],
-  external,
   output: [
     {
-      file: pkg.main,
+      file: 'dist/riot-webpack-loader.cjs',
       format: 'cjs',
-      interop: false,
     },
     {
-      file: pkg.module,
+      file: 'dist/riot-webpack-loader.js',
       format: 'es',
     },
   ],

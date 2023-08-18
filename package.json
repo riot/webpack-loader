@@ -1,18 +1,22 @@
 {
   "name": "@riotjs/webpack-loader",
   "version": "6.0.0",
+  "type": "module",
   "description": "Riot official webpack loader",
-  "main": "dist/riot-webpack-loader.cjs.js",
-  "jsnext:main": "dist/riot-webpack-loader.esm.js",
-  "module": "dist/riot-webpack-loader.esm.js",
-  "source": "./src/index.js",
+  "main": "dist/riot-webpack-loader.cjs",
+  "jsnext:main": "dist/riot-webpack-loader.js",
+  "module": "dist/riot-webpack-loader.js",
+  "exports": {
+    "import": "./dist/riot-webpack-loader.js",
+    "require": "./dist/riot-webpack-loader.cjs"
+  },
   "scripts": {
     "prepublishOnly": "npm test",
     "prepare": "npm i @riotjs/compiler @riotjs/hot-reload --no-save",
     "lint": "eslint src test",
     "build": "rollup -c",
     "pretest": "npm run build",
-    "test": "npm run lint && mocha -r esm --timeout 5000 test/index.js"
+    "test": "npm run lint && mocha --timeout 5000 test/index.js"
   },
   "files": [
     "dist"
@@ -27,24 +31,22 @@
     "loader"
   ],
   "peerDependencies": {
-    "@riotjs/compiler": "^6.0.0"
+    "@riotjs/compiler": "^6.0.0 || ^9.0.0",
+    "webpack": ">=5.0.0"
   },
-  "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
+  "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (https://gianlucaguarini.com)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/riot/webpack-loader/issues"
   },
   "homepage": "https://github.com/riot/webpack-loader#readme",
-  "dependencies": {
-    "loader-utils": "^2.0.0"
-  },
   "devDependencies": {
-    "chai": "^4.3.4",
-    "eslint": "^7.30.0",
-    "eslint-config-riot": "^3.0.0",
-    "esm": "^3.2.25",
-    "mocha": "^8.4.0",
-    "rollup": "^2.53.1",
-    "webpack": "^5.44.0"
+    "chai": "^4.3.7",
+    "eslint": "^8.47.0",
+    "eslint-config-riot": "^4.1.0",
+    "@riotjs/prettier-config": "^1.1.0",
+    "mocha": "^10.2.0",
+    "rollup": "^3.28.0",
+    "webpack": "^5.88.2"
   }
 }

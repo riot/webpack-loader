@@ -4,4 +4,4 @@ engines:
 
 ratings:
   paths:
-  - "index.js"
+    - 'index.js'

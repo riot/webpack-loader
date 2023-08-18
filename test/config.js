@@ -1,6 +1,4 @@
-const path = require('path')
+import { join, resolve } from 'node:path'
 
-module.exports = {
-  FIXTURES: path.join(__dirname, 'fixtures'),
-  DUMMY_BUNDLE_NAME: 'bundle.js'
-}
+export const FIXTURES = resolve(join('test', 'fixtures'))
+export const DUMMY_BUNDLE_NAME = 'bundle.js'

@@ -1,21 +1,25 @@
-const path = require('path'),
-  { FIXTURES, DUMMY_BUNDLE_NAME } = require('./config')
+import { resolve, join } from 'node:path'
+import { FIXTURES, DUMMY_BUNDLE_NAME } from './config.js'
 
-module.exports = {
+console.log(resolve('./dist/riot-webpack-loader.cjs'))
+
+export default {
   output: {
-    path: __dirname,
-    filename: DUMMY_BUNDLE_NAME
+    path: resolve('./test'),
+    filename: DUMMY_BUNDLE_NAME,
   },
   devtool: 'eval-source-map',
-  entry: path.join(FIXTURES, 'index.js'),
+  entry: join(FIXTURES, 'index.js'),
   module: {
     rules: [
       {
         test: /\.riot$/,
-        use: [{
-          loader: path.resolve(__dirname, '../dist/riot-webpack-loader.cjs.js')
-        }]
-      }
-    ]
-  }
+        use: [
+          {
+            loader: resolve('./dist/riot-webpack-loader.js'),
+          },
+        ],
+      },
+    ],
+  },
 }
