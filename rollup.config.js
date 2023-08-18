@@ -9,11 +9,11 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      interop: false
+      interop: false,
     },
     {
       file: pkg.module,
-      format: 'es'
-    }
-  ]
+      format: 'es',
+    },
+  ],
 }
