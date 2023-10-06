@@ -6,16 +6,19 @@ import { compile } from '@riotjs/compiler'
  * @returns {string} the code needed to handle the riot hot reload
  */
 function hotReload(path) {
-  return `;(() => {
-  if (module.hot) {
-    const hotReload = require('@riotjs/hot-reload').default
-    module.hot.accept()
-    if (module.hot.data) {
-      const component = require(${path}).default;
-      hotReload(component)
+  return `
+  import hotReload from '@riotjs/hot-reload';
+  
+  ;(() => {
+    if (module.hot) {
+      module.hot.accept()
+      if (module.hot.data) {
+        const component = require(${path}).default;
+        hotReload(component)
+      }
     }
-  }
-})()`
+  })();
+`
 }
 
 export default function (source, map, meta) {

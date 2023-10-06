@@ -41,12 +41,12 @@
   },
   "homepage": "https://github.com/riot/webpack-loader#readme",
   "devDependencies": {
-    "chai": "^4.3.7",
-    "eslint": "^8.47.0",
-    "eslint-config-riot": "^4.1.0",
+    "chai": "^4.3.10",
+    "eslint": "^8.51.0",
+    "eslint-config-riot": "^4.1.1",
     "@riotjs/prettier-config": "^1.1.0",
     "mocha": "^10.2.0",
-    "rollup": "^3.28.0",
+    "rollup": "^4.0.2",
     "webpack": "^5.88.2"
   }
 }
