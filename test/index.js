@@ -34,7 +34,7 @@ function compile(opts) {
 }
 
 const OPENING_TEMPLATE_CALL = /template\(/
-const RIOT_HOT_RELOAD_DEPENDENCY = /hotReload/
+const RIOT_HOT_RELOAD_DEPENDENCY = /@riotjs\/hot-reload/
 
 describe('Riot.js webpack loader unit test', () => {
   afterEach(() => {
