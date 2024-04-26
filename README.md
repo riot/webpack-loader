@@ -55,7 +55,9 @@ And afterward webpack will be able to automatically reload your Riot.js componen
 
 ## Examples
 
-Please check [this simple example](https://github.com/riot/examples/tree/gh-pages/webpack) to see how it's easy to configure webpack with riot
+Please check the following exapmles to see how it's easy to configure webpack with riot:
+- [Lazy routes](https://github.com/riot/examples/tree/gh-pages/lazy-routes)
+- [SSR](https://github.com/riot/examples/tree/gh-pages/ssr)
 
 [ci-image]: https://img.shields.io/github/actions/workflow/status/riot/webpack-loader/test.yml?style=flat-square
 [ci-url]: https://github.com/riot/webpack-loader/actions
