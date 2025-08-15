@@ -1,7 +1,9 @@
 # Riot.js webpack-loader
 
 [![Build Status][ci-image]][ci-url]
-[![Issue Count][codeclimate-image]][codeclimate-url]
+
+<!-- [![Issue Count][qlty-image]][qlty-url] -->
+
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
@@ -56,6 +58,7 @@ And afterward webpack will be able to automatically reload your Riot.js componen
 ## Examples
 
 Please check the following exapmles to see how it's easy to configure webpack with riot:
+
 - [Lazy routes](https://github.com/riot/examples/tree/gh-pages/lazy-routes)
 - [SSR](https://github.com/riot/examples/tree/gh-pages/ssr)
 
@@ -66,5 +69,3 @@ Please check the following exapmles to see how it's easy to configure webpack wi
 [npm-version-image]: https://img.shields.io/npm/v/@riotjs/webpack-loader.svg?style=flat-square
 [npm-downloads-image]: https://img.shields.io/npm/dm/@riotjs/webpack-loader.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/@riotjs/webpack-loader
-[codeclimate-image]: https://api.codeclimate.com/v1/badges/8c3dc0302a42730e8fba/maintainability
-[codeclimate-url]: https://codeclimate.com/github/riot/webpack-loader/maintainability
