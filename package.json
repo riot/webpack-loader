@@ -1,6 +1,6 @@
 {
   "name": "@riotjs/webpack-loader",
-  "version": "9.0.1",
+  "version": "10.0.0-rc.1",
   "type": "module",
   "description": "Riot official webpack loader",
   "main": "dist/riot-webpack-loader.cjs",
