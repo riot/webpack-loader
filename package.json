@@ -40,14 +40,14 @@
   },
   "homepage": "https://github.com/riot/webpack-loader#readme",
   "devDependencies": {
-    "@riotjs/compiler": "^10.0.0-beta.2",
+    "@riotjs/compiler": "^10.0.0",
     "@riotjs/hot-reload": "^10.0.0-rc.1",
     "@riotjs/prettier-config": "^1.1.0",
-    "chai": "^5.2.1",
+    "chai": "^6.0.1",
     "eslint": "^9.33.0",
     "eslint-config-riot": "^5.0.2",
     "mocha": "^11.7.1",
-    "rollup": "^4.46.2",
-    "webpack": "^5.101.2"
+    "rollup": "^4.47.1",
+    "webpack": "^5.101.3"
   }
 }
