@@ -41,7 +41,7 @@
   "homepage": "https://github.com/riot/webpack-loader#readme",
   "devDependencies": {
     "@riotjs/compiler": "^10.0.0",
-    "@riotjs/hot-reload": "^10.0.0-rc.1",
+    "@riotjs/hot-reload": "^10.0.0",
     "@riotjs/prettier-config": "^1.1.0",
     "chai": "^6.0.1",
     "eslint": "^9.33.0",
